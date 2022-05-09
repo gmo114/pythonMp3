@@ -7,7 +7,7 @@ import threading
 import time
 
 mixlist = []
-for (path, dirname, titles) in walk("//home//gmo//Music//"):
+for (path, dirname, titles) in walk("//home//gmo//Music//"): #dir of music
     mixlist = titles
 stop = False
 vol = 0.05
@@ -19,7 +19,7 @@ def playCorretly(myfre,music):
     mixer.quit() # you need to quite the mixer so the frequency can be properly set
     mixer.init(frequency=myfre) #you need to set the frequence so that music playes correctly
     mixer.music.set_volume(vol)
-    mixer.music.load("//home//gmo//Music//"+music)
+    mixer.music.load("//home//gmo//Music//"+music) #dir of music
     mixer.music.play()
     
 def get_RandomSong():
@@ -32,7 +32,7 @@ def get_RandomSong():
         random.shuffle(mixlist)
         index = 0
     music = mixlist[index]
-    mp3 = MP3("//home//gmo//Music//"+music)
+    mp3 = MP3("//home//gmo//Music//"+music) #dir of music
     rate = mp3.info.sample_rate
     return rate,music
 
@@ -52,7 +52,7 @@ def playerRuning():
                 playCorretly(rate,music)
         
 
-
+random.shuffle(mixlist)
 (rate,music) = get_RandomSong()
 playCorretly(rate,music)
 currentSong = music
